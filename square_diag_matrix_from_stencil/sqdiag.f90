@@ -1,6 +1,49 @@
 program test
+    implicit none
 
+    interface
+        subroutine print_matrix(a, f, nm)
+            implicit none
+            real(8), dimension(:, :), intent(in) :: a
+            real(4), intent(in) :: f
+            character, intent(in) :: nm
+        end subroutine
+    end interface
+
+    integer(4) :: i
+    real(8), dimension(9) :: a
+    real(8), dimension(3, 3) :: b
+    character(len=16) :: fmtstr
+    fmtstr = '(3(2X, F3.1))'
+    a = 0
+    do i=1, 9, 4
+        a(i) = 1
+    end do
+    b = reshape(a, [3, 3])
+    print fmtstr, a
+    print fmtstr, b
+    ! call print_matrix(a, 6.2, 'a')
 end program
+
+
+subroutine print_matrix(a, f, nm)
+    implicit none
+    real(8), dimension(:, :), intent(in) :: a
+    real(4), intent(in) :: f
+    character, intent(in) :: nm
+    integer(4) :: cols, rows, i, j
+    character(len=32) :: fmtstr
+    cols = size(a, 1)
+    rows = size(a, 2)
+    print *, cols, rows
+    write(fmtstr, '(A, I4, A, F4.1, A)') '(', cols, '(3X, F', f, '))'
+    ! print fmtstr, a
+    write(*, *) nm, ' = '
+    do i=1, rows 
+        write(*, fmtstr, advance='no') (a(i, j), j=1, cols)
+        write(*, *) ''
+    end do
+end subroutine
 
 
 function sqdiag(n, s, err)
@@ -45,7 +88,6 @@ function sqdiag(n, s, err)
         end do
         k = k + 1
     end do
-
     do i = n*m+1, n*(n-m), n+1
         tmp(i:i+l) = s
     end do
