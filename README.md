@@ -8,5 +8,5 @@ Fortran"](http://www.math.uni-leipzig.de/~hellmund/fortran.html)
 function to get diagonal matrix from stencil  
 f2py:
 
-    python3 -m numpy.f2py -c -m diag_from_stencil_module diag_from_stencil.f90
+    python3 -m numpy.f2py -c -m stencil_diag_lib stdiag.f90
 

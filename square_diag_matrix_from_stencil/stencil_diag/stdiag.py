@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-import diag_from_stencil_lib
+import stencil_diag_lib
 
-_stdiag = diag_from_stencil_lib.diag_from_stencil_module.stdiag
+_stdiag = stencil_diag_lib.diag_from_stencil_module.stdiag
 
 def stdiag(n, s):
     """
     diagonal matrix from stencil
-    
+
     Wrapper for Fortran function ``diag_from_stencil``
 
     Parameters
@@ -18,7 +18,7 @@ def stdiag(n, s):
     Returns
     -------
     sqdiag : rank-2 array with bounds (n, n)
-    
+
     """
     res, err = _stdiag(n, s)
     if err == -1:
