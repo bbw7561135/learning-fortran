@@ -16,7 +16,6 @@ compile with
 
     gfortran -I \path\to\ogpf.mod \path\to\ogpf.o sierpinski.f90
     a.exe
-    gnuplot -p ogpf_temp_script.gp
 
 
 ## plotting with fortran
